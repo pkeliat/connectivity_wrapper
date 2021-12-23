@@ -91,8 +91,8 @@ class ConnectivityWidgetWrapper extends StatelessWidget {
     final bool _isOffline = Provider.of<ConnectivityStatus>(context) !=
         ConnectivityStatus.CONNECTED;
     isOfflines = _isOffline;
-    if(_isOffline) offlineCallback!();
-    if(!_isOffline) onlineCallback!();
+    if(_isOffline && offlineCallback != null) offlineCallback!();
+    if(!_isOffline && onlineCallback != null) onlineCallback!();
     Widget _finalOfflineWidget = Align(
       alignment: alignment ?? Alignment.bottomCenter,
       child: offlineWidget ??
