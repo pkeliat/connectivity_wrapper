@@ -44,7 +44,7 @@ class ConnectivityWidgetWrapper extends StatelessWidget {
   final AlignmentGeometry? alignment;
   
   /// offlineCallback cuyy.
-  final OfflineCallback offlineCallback;
+  final OfflineCallback? offlineCallback;
 
   const ConnectivityWidgetWrapper({
     Key? key,
