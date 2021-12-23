@@ -10,6 +10,7 @@ import 'package:connectivity_wrapper/src/utils/constants.dart';
 import 'package:connectivity_wrapper/src/widgets/empty_container.dart';
 
 var isOfflines;
+typedef void OfflineCallback();
 
 class ConnectivityWidgetWrapper extends StatelessWidget {
   /// The [child] contained by the ConnectivityWidgetWrapper.
@@ -41,6 +42,9 @@ class ConnectivityWidgetWrapper extends StatelessWidget {
 
   /// How to align the offline widget.
   final AlignmentGeometry? alignment;
+  
+  /// offlineCallback cuyy.
+  final OfflineCallback offlineCallback;
 
   const ConnectivityWidgetWrapper({
     Key? key,
@@ -54,6 +58,7 @@ class ConnectivityWidgetWrapper extends StatelessWidget {
     this.stacked = true,
     this.alignment,
     this.disableInteraction = false,
+    this.offlineCallback,
   })  : assert(
           decoration == null || offlineWidget == null,
           'Cannot provide both a color and a offlineWidget\n',
@@ -81,6 +86,7 @@ class ConnectivityWidgetWrapper extends StatelessWidget {
     final bool _isOffline = Provider.of<ConnectivityStatus>(context) !=
         ConnectivityStatus.CONNECTED;
     isOfflines = _isOffline;
+    if(_isOffline) offlineCallback();
     Widget _finalOfflineWidget = Align(
       alignment: alignment ?? Alignment.bottomCenter,
       child: offlineWidget ??
