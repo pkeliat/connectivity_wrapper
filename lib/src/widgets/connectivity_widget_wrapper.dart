@@ -101,7 +101,7 @@ class ConnectivityWidgetWrapper extends StatelessWidget {
           child,
           disableInteraction && _isOffline
               ? Column(
-                  children: <Widget>[
+                  children: <Widget?>[
                     Flexible(
                       child: Container(
                         decoration: decoration ??
