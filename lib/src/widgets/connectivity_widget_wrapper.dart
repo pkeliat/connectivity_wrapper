@@ -9,6 +9,8 @@ import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:connectivity_wrapper/src/utils/constants.dart';
 import 'package:connectivity_wrapper/src/widgets/empty_container.dart';
 
+var isOfflines;
+
 class ConnectivityWidgetWrapper extends StatelessWidget {
   /// The [child] contained by the ConnectivityWidgetWrapper.
   final Widget? child;
@@ -78,6 +80,7 @@ class ConnectivityWidgetWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool _isOffline = Provider.of<ConnectivityStatus>(context) !=
         ConnectivityStatus.CONNECTED;
+    isOfflines = _isOfflines;
     Widget _finalOfflineWidget = Align(
       alignment: alignment ?? Alignment.bottomCenter,
       child: offlineWidget ??
